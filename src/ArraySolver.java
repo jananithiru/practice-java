@@ -18,6 +18,9 @@ public class ArraySolver {
 		int[] d = { 2, 1, 3, 4, 1, 2, 1, 5, 4 };
 
 		ArraySolver as = new ArraySolver();
+		
+		System.out.println(as.getSqRt2(16)); 
+		
 		// as.maxSubArray(a);
 		// as.maxSubsequence(a);
 		// as.maxSubArray(b);
@@ -37,17 +40,17 @@ public class ArraySolver {
 		// System.out.println("MissingElement:" + as.findMissingElement1(e, f));
 		// System.out.println("MissingElement:" + as.findMissingElement2(e, f));
 
-		as.mergeTwoSortedArrays(e, f);
-		int[] g1 = {-7,-7,-5,-5,-1,-1,1,2,2,2,2,3,3,4,4};
-		int[] g2 = {-7,-7,-5,-5,-1,-1,1,2,2,2,2,3,3,4,4,9};
-		
-		int[] g3 = new int[g2.length+g1.length];
-		
-		for ( int i=0; i < g2.length ; i ++)
-			g3[i] = g2[i];
-			
-
-		as.mergeTwoSortedArrays2(g3, g2.length, g1, g1.length);
+//		as.mergeTwoSortedArrays(e, f);
+//		int[] g1 = {-7,-7,-5,-5,-1,-1,1,2,2,2,2,3,3,4,4};
+//		int[] g2 = {-7,-7,-5,-5,-1,-1,1,2,2,2,2,3,3,4,4,9};
+//		
+//		int[] g3 = new int[g2.length+g1.length];
+//		
+//		for ( int i=0; i < g2.length ; i ++)
+//			g3[i] = g2[i];
+//			
+//
+//		as.mergeTwoSortedArrays2(g3, g2.length, g1, g1.length);
 	}
 
 	public void maxSubArray(int[] a) {
@@ -313,4 +316,51 @@ public class ArraySolver {
 			System.out.print(" "+a+",");
 		
 	}
+	
+	public int getSqRt ( int num ){
+		
+		if (num==0) return 0;
+		
+		
+		for ( int i=1  ; i <= num/2 ; i++) {
+			int sq = i*i; 
+			if ( sq == num ){
+				return i;
+				//break;
+			} else if ( sq > num)
+				return i-1;
+		}	
+		return 0;
+	}
+	
+	public int getSqRt2 (int num){
+		
+		
+		
+		int low = 0; 
+		int high = 1+num/2 ; // add 1 to consider this number also  
+		
+		int mid ;
+		
+		while (low < high ) {
+			
+			mid = low + (high-low) / 2; 
+			
+			int sq = mid*mid ;
+			
+			if (sq == num)
+				return mid;
+		
+			if ( sq > num )
+				high = mid ;
+			else 
+				low = mid ;  
+		}
+		
+		return 0;
+		
+	}
+	
+	
+	
 }
