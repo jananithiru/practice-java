@@ -30,7 +30,6 @@ public class ArrayIterator<T> implements Iterator<T> {
 	@Override
 	public void remove() {
 		// TODO Auto-generated method stub
-		
 
 	}
 

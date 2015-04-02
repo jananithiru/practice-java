@@ -1,6 +1,4 @@
-import LRU.Node;
-
-public class FIFO {
+public class FIFO implements Iterable<Node>{
 
 	// add
 	// remove
@@ -9,7 +7,7 @@ public class FIFO {
 	Node head;
 	Node tail;
 
-	// add in front 
+	// add in front
 	public void add(Integer data) {
 
 		Node n = new Node(data);
@@ -24,6 +22,7 @@ public class FIFO {
 		if (head == tail) {
 			n.next = tail;
 			head = n;
+			return;
 		}
 
 		// all other nodes
@@ -33,23 +32,32 @@ public class FIFO {
 		n.prev = head;
 		head.next = n;
 
+		return;
+
 	}
-	
-	// remove from back 
-	public boolean remove(Integer data) {
+
+	// remove from back
+	public boolean remove(Node n) {
+
+		Node cur = n; 
+		Node next = n.next; 
+		Node prev = n.prev;
 		
-		// 0 node 
+		// 0 node
 		if (tail == null) {
-			return false ;
+			return false;
 		}
-		
-		// 1 node  
-		if (tail == head){
+
+		// 1 node
+		if (tail == head) {
 			tail = head = null;
+			return true;
 		}
+
+		 = tail.prev;
 		
-		tail = tail.prev;
-		
+		return true;
+
 	}
 
 	public class Node {
@@ -63,6 +71,20 @@ public class FIFO {
 			this.next = null;
 			this.prev = null;
 		}
+	}
+	
+	public static void main ( String[] args ){
+		
+		FIFO queue = new FIFO();
+		
+		queue.add(5);
+		queue.add(6);
+		queue.add(7);
+		
+		for (Node q: queue) {
+			System.out.println(q);
+		}
+		
 	}
 
 }
